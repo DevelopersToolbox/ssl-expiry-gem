@@ -1,0 +1,64 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'optparse'
+require 'ssl_expiry'
+
+# -------------------------------------------------------------------------------- #
+# Process Arguments                                                                #
+# -------------------------------------------------------------------------------- #
+# This function will process the input from the command line and work out what it  #
+# is that the user wants to see.                                                   #
+#                                                                                  #
+# This is the main processing function where all the processing logic is handled.  #
+# -------------------------------------------------------------------------------- #
+
+def process_arguments
+    options = {}
+    # Enforce the presence of
+    mandatory = %I[domain]
+
+    optparse = OptionParser.new do |opts|
+        opts.banner = "Usage: #{$PROGRAM_NAME}"
+
+        opts.on('-h', '--help', 'Display this screen') do
+            puts opts
+            exit(1)
+        end
+        opts.on('-d', '--domain string', 'The domain name to check') do |domain|
+            options[:domain] = domain
+        end
+    end
+
+    begin
+        optparse.parse!
+        options[:message] = ARGF.read unless STDIN.tty? # override message parameter if data is piped in
+        missing = mandatory.select { |param| options[param].nil? }
+        raise OptionParser::MissingArgument.new(missing.join(', ')) unless missing.empty?
+    rescue OptionParser::InvalidOption, OptionParser::MissingArgument => e
+        puts e.to_s
+        puts optparse
+        exit
+    end
+
+    results = SSLExpiry::SSLExpiry.check_certificates(options[:domain])
+    SSLExpiry::SSLExpiry.display_results(results)
+end
+
+# -------------------------------------------------------------------------------- #
+# Main()                                                                           #
+# -------------------------------------------------------------------------------- #
+# The main function where all of the heavy lifting and script config is done.      #
+# -------------------------------------------------------------------------------- #
+
+def main
+    process_arguments
+end
+
+main
+
+# -------------------------------------------------------------------------------- #
+# End of Script                                                                    #
+# -------------------------------------------------------------------------------- #
+# This is the end - nothing more to see here.                                      #
+# -------------------------------------------------------------------------------- #
