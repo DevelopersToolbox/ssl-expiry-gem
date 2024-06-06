@@ -1,12 +1,44 @@
-[![Build Status](https://img.shields.io/travis/AntiPhotonltd/ssl_expiry/master.svg)](https://travis-ci.org/AntiPhotonltd/ssl_expiry)
-[![Software License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md)
-[![Release](https://img.shields.io/github/release/AntiPhotonltd/ssl_expiry.svg)](https://github.com/AntiPhotonltd/ssl_expiry/releases/latest)
-[![Gem Version](https://badge.fury.io/rb/ssl_expiry.svg)](https://badge.fury.io/rb/ssl_expiry)
-[![Github commits (since latest release)](https://img.shields.io/github/commits-since/AntiPhotonltd/ssl_expiry/latest.svg)](https://github.com/AntiPhotonltd/ssl_expiry/commits)
-[![GitHub repo size in bytes](https://img.shields.io/github/repo-size/AntiPhotonltd/ssl_expiry.svg)](https://github.com/AntiPhotonltd/ssl_expiry)
-[![GitHub contributors](https://img.shields.io/github/contributors/AntiPhotonltd/ssl_expiry.svg)](https://github.com/AntiPhotonltd/ssl_expiry)
+<!-- markdownlint-disable -->
+<p align="center">
+    <a href="https://github.com/DevelopersToolbox/">
+        <img src="https://cdn.wolfsoftware.com/assets/images/github/organisations/developerstoolbox/black-and-white-circle-256.png" alt="DevelopersToolbox logo" />
+    </a>
+    <br />
+    <a href="https://github.com/DevelopersToolbox/ssl-expiry-gem/actions/workflows/cicd.yml">
+        <img src="https://img.shields.io/github/actions/workflow/status/DevelopersToolbox/ssl-expiry-gem/cicd.yml?branch=master&label=build%20status&style=for-the-badge" alt="Github Build Status" />
+    </a>
+    <a href="https://github.com/DevelopersToolbox/ssl-expiry-gem/blob/master/LICENSE.md">
+        <img src="https://img.shields.io/github/license/DevelopersToolbox/ssl-expiry-gem?color=blue&label=License&style=for-the-badge" alt="License">
+    </a>
+    <a href="https://github.com/DevelopersToolbox/ssl-expiry-gem">
+        <img src="https://img.shields.io/github/created-at/DevelopersToolbox/ssl-expiry-gem?color=blue&label=Created&style=for-the-badge" alt="Created">
+    </a>
+    <br />
+    <a href="https://github.com/DevelopersToolbox/ssl-expiry-gem/releases/latest">
+        <img src="https://img.shields.io/github/v/release/DevelopersToolbox/ssl-expiry-gem?color=blue&label=Latest%20Release&style=for-the-badge" alt="Release">
+    </a>
+    <a href="https://github.com/DevelopersToolbox/ssl-expiry-gem/releases/latest">
+        <img src="https://img.shields.io/github/release-date/DevelopersToolbox/ssl-expiry-gem?color=blue&label=Released&style=for-the-badge" alt="Released">
+    </a>
+    <a href="https://github.com/DevelopersToolbox/ssl-expiry-gem/releases/latest">
+        <img src="https://img.shields.io/github/commits-since/DevelopersToolbox/ssl-expiry-gem/latest.svg?color=blue&style=for-the-badge" alt="Commits since release">
+    </a>
+    <br />
+    <a href="https://github.com/DevelopersToolbox/ssl-expiry-gem/blob/master/.github/CODE_OF_CONDUCT.md">
+        <img src="https://img.shields.io/badge/Code%20of%20Conduct-blue?style=for-the-badge" />
+    </a>
+    <a href="https://github.com/DevelopersToolbox/ssl-expiry-gem/blob/master/.github/CONTRIBUTING.md">
+        <img src="https://img.shields.io/badge/Contributing-blue?style=for-the-badge" />
+    </a>
+    <a href="https://github.com/DevelopersToolbox/ssl-expiry-gem/blob/master/.github/SECURITY.md">
+        <img src="https://img.shields.io/badge/Report%20Security%20Concern-blue?style=for-the-badge" />
+    </a>
+    <a href="https://github.com/DevelopersToolbox/ssl-expiry-gem/issues">
+        <img src="https://img.shields.io/badge/Get%20Support-blue?style=for-the-badge" />
+    </a>
+</p>
 
-# SSL Expiry
+## Overview
 
 This is a simple little gem for checking when an SSL will expire.
 
@@ -20,42 +52,55 @@ gem 'ssl_expiry'
 
 And then execute:
 
-    $ bundle
+```
+$ bundle
+```
 
 Or install it yourself as:
 
-    $ gem install ssl_expiry
+```
+$ gem install ssl_expiry
+```
 
 ## Usage
 
 ### Simple Usage
 ```ruby
-  require 'ssl_expiry'
+require 'ssl_expiry'
 
-  SSLExpiry::SSLExpiry.check_certificates('antiphoton.com')
+SSLExpiry::SSLExpiry.check_certificates('wolfsoftware.com')
 
-  Results:
-  {"antiphoton.com"=>{"status"=>200, "expires_on"=>"09 Mar 2019", "expires_in"=>16, "common_name"=>"antiphoton.com", "issuer"=>"COMODO CA Limited"}}
+Results:
+{"wolfsoftware.com"=>{"status"=>200, "expires_on"=>"02 Aug 2024", "expires_in"=>57, "common_name"=>"wolfsoftware.com", "issuer"=>"Let's Encrypt"}}
+```
+
+#### Multiple Domains
+
+It is possible to check a list of domains rather than just single domains, this is done by passing a list[] to SSLExpiry::SSLExpiry.check_certificates.
+
+```ruby
+require 'ssl_expiry'
+
+SSLExpiry::SSLExpiry.check_certificates(['wolfsoftware.com', 'wolfsoftware.net'])
 ```
 
 ### Displaying the output
 
 ```ruby
-  require 'ssl_expiry'
+require 'ssl_expiry'
 
-  results = SSLExpiry::SSLExpiry.check_certificates(['antiphoton.com','wolfsoftware.com'])
-  SSLExpiry::SSLExpiry.display_results(results)
+results = SSLExpiry::SSLExpiry.check_certificates('wolfsoftware.com')
+SSLExpiry::SSLExpiry.display_results(results)
 ```
 
 This would give the following output
 
 ```shell
-  ----------------------------------------------------------------------------------------------------
-   Domain                         | Status
-  ----------------------------------------------------------------------------------------------------
-   antiphoton.com                 | expires on 09 Mar 2019 (in 16 days) [CN=antiphoton.com]
-   wolfsoftware.com               | expires on 12 Sep 2019 (in 203 days) [CN=*.wolfsoftware.com]
-  ----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+ Domain                         | Status
+----------------------------------------------------------------------------------------------------
+ wolfsoftware.com               | expires on 02 Aug 2024 (in 57 days) [CN=wolfsoftware.com]
+----------------------------------------------------------------------------------------------------
 ```
 
 ## Command Line Tools
@@ -63,13 +108,28 @@ This would give the following output
 There is a command line tool included with this gem.
 
 ```shell
-  check-ssl -d antiphoton.com
+check-ssl -d wolfsoftware.com
 
-  ----------------------------------------------------------------------------------------------------
-   Domain                         | Status
-  ----------------------------------------------------------------------------------------------------
-   antiphoton.com                 | expires on 09 Mar 2019 (in 16 days) [CN=antiphoton.com]
-  ----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+ Domain                         | Status
+----------------------------------------------------------------------------------------------------
+ wolfsoftware.com               | expires on 02 Aug 2024 (in 57 days) [CN=wolfsoftware.com]
+----------------------------------------------------------------------------------------------------
+```
+
+### Multiple Domains
+
+To check multiple domains at the same time, simply supply a comma separated list.
+
+```shell
+check-ssl -d wolfsoftware.com,wolfsoftware.net
+
+------------------------------------------------------------------------------------------------------------------------
+ Domain                         | Status
+------------------------------------------------------------------------------------------------------------------------
+ wolfsoftware.com               | expires on 02 Aug 2024 (in 57 days) [CN=wolfsoftware.com]
+ wolfsoftware.net               | expires on 02 Aug 2024 (in 57 days) [CN=wolfsoftware.net]
+------------------------------------------------------------------------------------------------------------------------
 ```
 
 ### Custom port
@@ -77,27 +137,8 @@ There is a command line tool included with this gem.
 If you want to check an SSL expiry on a custom port you can do this by adding the port to the end of the domain.
 
 ```
-  check-ssl -d antiphoton.com:8080
+  check-ssl -d wolfsoftware.com:8080
 ```
 
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Testing
-
-For local testing make sure that you run `bundle exec rspec spec` and then `rake install` to install the gem locally.
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/AntiPhotonltd/ssl_expiry. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## Code of Conduct
-
-Everyone interacting in the SSLExpiry project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/AntiPhotonltd/ssl_expiry/blob/master/CODE_OF_CONDUCT.md).
+<br />
+<p align="right"><a href="https://wolfsoftware.com/"><img src="https://img.shields.io/badge/Created%20by%20Wolf%20on%20behalf%20of%20Wolf%20Software-blue?style=for-the-badge" /></a></p>
