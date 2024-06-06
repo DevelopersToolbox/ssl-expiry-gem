@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29  # v4.1.6
 
       - name: Release Gem
-        uses: ActionsToolbox/gem-build-and-release-action@66db265fce890347ed60889bc899a3272543f950  # v0.1.0
+        uses: ActionsToolbox/gem-build-and-release-action@5c8ce7c2a7e88003b4612301a0039de2f676e431  # v0.1.1
         env:
           RUBYGEMS_API_KEY: ${{secrets.RUBYGEMS_API_KEY}}
           PUBLISH: false
