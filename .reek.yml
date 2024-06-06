@@ -1,0 +1,14 @@
+---
+detectors:
+    DuplicateMethodCall:
+        exclude:
+            - 'process_arguments'
+    FeatureEnvy:
+        exclude:
+            - 'process_arguments'
+    NestedIterators:
+        max_allowed_nesting: 2
+    TooManyStatements:
+        max_statements: 24
+    UtilityFunction:
+        public_methods_only: true

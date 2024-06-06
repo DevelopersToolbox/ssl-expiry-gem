@@ -1,33 +1,41 @@
+AllCops:
+    NewCops: enable
+
+Layout/CaseIndentation:
+    Enabled: false
+
+Layout/FirstHashElementIndentation:
+    Enabled: false
+
+Layout/HashAlignment:
+    Enabled: false
+
 Layout/IndentationWidth:
-  Width: 4
+    Width: 4
 
 Layout/LineLength:
-  Enabled: false
+    Enabled: false
+
+Layout/SpaceInsideArrayLiteralBrackets:
+    Enabled: false
 
 Metrics/AbcSize:
-  Enabled: false
-
-Metrics/BlockLength:
-  Enabled: false
+    Enabled: false
 
 Metrics/CyclomaticComplexity:
-  Enabled: false
+    Max: 10
 
-Metrics/MethodLength: 
-  Enabled: false
+Metrics/MethodLength:
+    Max: 24
 
-Metrics/PerceivedComplexity:
-  Enabled: false
+Naming/FileName:
+    Enabled: false
+
+Style/FrozenStringLiteralComment:
+    Enabled: false
 
 Style/GlobalVars:
-  Enabled: false
+    Enabled: false
 
 Style/RaiseArgs:
-  EnforcedStyle: compact
-
-Style/RedundantBegin:
-  Enabled: false
-
-Style/WordArray:
-  EnforcedStyle: brackets
-
+    EnforcedStyle: compact

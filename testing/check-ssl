@@ -15,6 +15,7 @@ require 'ssl_expiry'
 # This is the main processing function where all the processing logic is handled.  #
 # -------------------------------------------------------------------------------- #
 
+# This method smells of :reek:NilCheck, :reek:UncommunicativeVariableName
 def process_arguments
     options = {}
     # Enforce the presence of
@@ -34,17 +35,17 @@ def process_arguments
 
     begin
         optparse.parse!
-        options[:message] = ARGF.read unless STDIN.tty? # override message parameter if data is piped in
+        options[:message] = ARGF.read unless $stdin.tty? # override message parameter if data is piped in
         missing = mandatory.select { |param| options[param].nil? }
         raise OptionParser::MissingArgument.new(missing.join(', ')) unless missing.empty?
     rescue OptionParser::InvalidOption, OptionParser::MissingArgument => e
-        puts e.to_s
+        puts e
         puts optparse
         exit
     end
 
-    results = SSLExpiry::SSLExpiry.check_certificates(options[:domain])
-    SSLExpiry::SSLExpiry.display_results(results)
+    results = SSLExpiry.check_certificates(options[:domain])
+    SSLExpiry.display_results(results)
 end
 
 # -------------------------------------------------------------------------------- #

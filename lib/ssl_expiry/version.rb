@@ -1,5 +1,13 @@
-# frozen_string_literal: true
+class SSLExpiry
+    # Current major release.
+    MAJOR = 1
 
-module SSLExpiry
-    VERSION = '1.0.3'
+    # Current minor release.
+    MINOR = 0
+
+    # Current patch level.
+    PATCH = 4
+
+    # Full release version.
+    VERSION = [MAJOR, MINOR, PATCH].join('.').freeze
 end
