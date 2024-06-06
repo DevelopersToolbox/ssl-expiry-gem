@@ -23,10 +23,10 @@ Metrics/AbcSize:
     Enabled: false
 
 Metrics/CyclomaticComplexity:
-  Max: 10
+    Max: 10
 
 Metrics/MethodLength:
-  Max: 24
+    Max: 24
 
 Naming/FileName:
     Enabled: false
@@ -36,9 +36,6 @@ Style/FrozenStringLiteralComment:
 
 Style/GlobalVars:
     Enabled: false
-
-Style/HashSyntax:
-    EnforcedStyle: hash_rockets
 
 Style/RaiseArgs:
     EnforcedStyle: compact

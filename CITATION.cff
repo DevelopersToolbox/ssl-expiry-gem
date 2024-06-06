@@ -1,11 +1,11 @@
 cff-version: 1.2.0
 message: If you use this software, please cite it using these metadata.
-title:
-abstract:
+title: SSL Expiry
+abstract: A simple ruby gem for checking when ssl certificates expire.
 type: software
-version: 0.1.0
-date-released: YYYY-MM-DD
-repository-code: 
+version: 1.0.4
+date-released: 2024-06-06
+repository-code: https://github.com/DevelopersToolbox/ssl-expiry-gem
 keywords:
   - "Wolf Software"
   - "Software"
