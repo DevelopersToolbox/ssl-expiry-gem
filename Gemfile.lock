@@ -58,8 +58,7 @@ GEM
       rainbow (>= 2.0, < 4.0)
       rexml (~> 3.1)
     regexp_parser (2.9.2)
-    rexml (3.3.6)
-      strscan
+    rexml (3.3.9)
     rspec (3.11.0)
       rspec-core (~> 3.11.0)
       rspec-expectations (~> 3.11.0)
@@ -88,7 +87,6 @@ GEM
     rubocop-packaging (0.5.2)
       rubocop (>= 1.33, < 2.0)
     ruby-progressbar (1.13.0)
-    strscan (3.1.0)
     unicode-display_width (2.5.0)
     zeitwerk (2.6.15)
 
